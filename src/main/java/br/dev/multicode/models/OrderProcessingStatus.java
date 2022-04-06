@@ -19,11 +19,11 @@ public class OrderProcessingStatus {
   private OrderStatus status;
   private OriginProcessing originProcessing;
 
-  public static OrderProcessingStatus of(OrderMessage orderMessageReceived) {
+  public static OrderProcessingStatus of(OrderMessage orderMessageReceived, OrderStatus orderStatus) {
     return OrderProcessingStatus.builder()
       .eventId(orderMessageReceived.getEventId())
       .orderId(orderMessageReceived.getOrderId())
-      .status(OrderStatus.REJECTED_PRODUCT)
+      .status(orderStatus)
       .originProcessing(OriginProcessing.INVENTORY)
       .build();
   }
