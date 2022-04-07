@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderPaymentMessage {
 
+  private UUID eventId;
   private UUID orderId;
   private UUID userId;
   private TypePayment typePayment;
