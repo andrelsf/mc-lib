@@ -19,12 +19,23 @@ public class OrderProcessingStatus {
   private OrderStatus status;
   private OriginProcessing originProcessing;
 
-  public static OrderProcessingStatus of(OrderMessage orderMessageReceived, OrderStatus orderStatus) {
+  public static OrderProcessingStatus of(OrderMessage orderMessageReceived, OrderStatus orderStatus)
+  {
     return OrderProcessingStatus.builder()
       .eventId(orderMessageReceived.getEventId())
       .orderId(orderMessageReceived.getOrderId())
       .status(orderStatus)
       .originProcessing(OriginProcessing.INVENTORY)
       .build();
+  }
+
+  public static OrderProcessingStatus of(OrderPaymentMessage orderPaymentMessage, OrderStatus orderStatus)
+  {
+    return OrderProcessingStatus.builder()
+        .eventId(orderPaymentMessage.getEventId())
+        .orderId(orderPaymentMessage.getOrderId())
+        .status(orderStatus)
+        .originProcessing(OriginProcessing.PAYMENT)
+        .build();
   }
 }
